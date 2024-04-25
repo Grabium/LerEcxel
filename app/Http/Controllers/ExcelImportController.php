@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\MoviesImport;
+//use App\Imports\MoviesImport;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Route;
+//use Maatwebsite\Excel\Facades\Excel;
+//use Illuminate\Support\Facades\Route;
 
 class ExcelImportController extends Controller
 {
@@ -33,15 +33,21 @@ class ExcelImportController extends Controller
         // Upload Image
         //no arquivo config\filesystems.php, há configurações para o salvamento de arquivos.
         //o drive disks configura o salvamento em: /storage/storage_path('cliente')/'planilhasUpadas'
-        $path = $request->file('changedFile')->storeAs('planilhasUpadas', $fileNameToStore);
+
+        $nome_da_pasta_customizada = 'planilhasUpadas';
+      
+        $partialPath = $request->file('changedFile')->storeAs($nome_da_pasta_customizada, $fileNameToStore);
+        //dd($path);
+        //Este nome será uzado para deletar posteriormente.
+        //$partialPath = $nome_da_pasta_customizada . $fileNameToStore;
       
     } else {
         $fileNameToStore = 'vazio';
     }
 
-    $completePath =  '/storage/cliente/'.$path;
+    //$completePath =  '/storage/cliente/'.$path;
 
-    return $completePath;
+    return $partialPath;
     
   }
 }

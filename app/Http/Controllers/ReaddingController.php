@@ -12,12 +12,20 @@ class ReaddingController extends Controller
   public array $data = [];
   public SimpleXLSX $xlsx;
   public int $linhasNaoNulas = 0;
+  public string $searchColumn = '';
+
+
+  public function __construct($partialPath, $searchColumn)
+  {
+    $this->localFile = base_path('/storage/cliente/'.$partialPath);
+    $this->searchColumn = $searchColumn;
+  }
   
-  public function readding($completePath)//string $completePath)
+  public function readding()
   {
     
+    //$completePath =  '/storage/cliente/'.$path;
     
-    $this->localFile = base_path($completePath);
     
     if ($this->xlsx = SimpleXLSX::parse($this->localFile)) {
       //$this->tableView();//returna uma tabela em html da planilha.
@@ -56,7 +64,7 @@ class ReaddingController extends Controller
     $totalDelinhas = count($this->data);
     $linhasVazias = 0;
     foreach($this->data as $k => $r){
-      if($r['titulo A'] == ''){
+      if($r[$this->searchColumn] == ''){
         $linhasVazias ++;
       }
     }

@@ -2,5 +2,5 @@
 
 
 <html lang="pt">
-  Foram atualizados {{ $qtd }} contratos.
+  Foram encontrados {{ $qtd }} linhas na coluna {{ $column }}.
 </html>

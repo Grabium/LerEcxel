@@ -13,8 +13,11 @@
       @csrf
         <h1>Quantidade de contratos já atualizados:</h1>
         <h3>Para isso, escolha a planilha para ser analizada</h3>
-        <input type="file" name="changedFile"/>
-        <input type="submit"/>
+        <label for="changedFile">Selecione o arquivo .xlsx para fazer a busca</label><br />
+        <input type="file" name="changedFile" id="changedFile"/><br /><br />
+        <label for="searchColumn">Indique o nome da clouna que será contada</label><br />
+        <input type="text" name="searchColumn" id="searchColumn"/><br />
+        <button>Enviar</button>
       </form>
     </div></div>
 
