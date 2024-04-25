@@ -13,17 +13,17 @@ class ReaddingController extends Controller
   public SimpleXLSX $xlsx;
   public int $linhasNaoNulas = 0;
   
-  public function readding(Request $request)
+  public function readding($completePath)//string $completePath)
   {
     
-    dd($request->file('changedFile'));
-    $this->localFile = '/home/runner/LerEcxel/database/fileUped/testePHP.xlsx';
+    
+    $this->localFile = base_path($completePath);
     
     if ($this->xlsx = SimpleXLSX::parse($this->localFile)) {
       //$this->tableView();//returna uma tabela em html da planilha.
-      $this->indexerXlsx();//dump($data);//apenas cria um array mas não exibe. Use dump($data) para ver
+      $this->indexerXlsx();//apenas cria um array mas não exibe. Use dump($data) para ver
       $this->verifyNotVoidRows();//verifica quantidade de linhas não vazias
-      return view('quantidade_de_contratos', ['qtd' => $this->linhasNaoNulas]) ;
+      return  $this->linhasNaoNulas;
     }else{
       echo SimpleXLSX::parseError();
     }
