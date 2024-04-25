@@ -2,5 +2,5 @@
 
 
 <html lang="pt">
-  Foram encontrados {{ $qtd }} linhas na coluna {{ $column }}.
+  <h2>Foram encontrados {{ $qtd }} linha{{ $plural = ($qtd > 1) ? 's': '' }} na coluna: <i><u>{{ $column }}</u></i>.</h2>
 </html>
